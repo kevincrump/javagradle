@@ -19,42 +19,6 @@ public class App {
 
         app.selectRecords(connection);
 
-//        System.out.println("Hello Java World 2!");
-//        String url = "jdbc:h2:mem:";
-//        Statement stmt = null;
-//// ...
-//        JdbcDataSource ds = new JdbcDataSource();
-//        ds.setURL(url);
-//        try {  Connection conn = ds.getConnection();
-//            System.out.println("connection");
-//            stmt = conn.createStatement();
-//
-//
-//            stmt.executeUpdate(CREATE_TABLE_SQL);
-//            System.out.println("create");
-//            stmt.executeUpdate(INSERT_TEST_SQL);
-//            System.out.println("insert");
-//
-//            stmt = conn.createStatement();
-//
-//            ResultSet rs = stmt.executeQuery(SELECT_QUERY);
-//            System.out.println(rs);
-//            System.out.println("rs");
-//            while( rs.next() )
-//            {
-//
-//                String name = rs.getString("message");
-//                System.out.println( name );
-//            }
-//            stmt.close();
-//            conn.close();
-//
-//        } catch (SQLException ex) {
-//            System.out.println("error");
-//            System.out.println(ex.getMessage());
-//            //Logger lgr = Logger.getLogger(JavaSeH2Memory.class.getName());
-//            //gr.log(Level.SEVERE, ex.getMessage(), ex);
-//        }
     }
 
     public void createTable(Connection connection) throws SQLException {
@@ -101,22 +65,7 @@ public class App {
         }
     }
 
-//    public void updateRecord(Connection connection) throws SQLException {
-//        System.out.println(UPDATE_USERS_SQL);
-//        // Step 1: Establishing a Connection
-//        try (Connection connection = H2JDBCUtils.getConnection();
-//             // Step 2:Create a statement using connection object
-//             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL)) {
-//            preparedStatement.setString(1, "Ram");
-//            preparedStatement.setInt(2, 1);
-//
-//            // Step 3: Execute the query or update query
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//
-//            // print SQL exception information
-//            H2JDBCUtils.printSQLException(e);
-//        }
-//
-//    }
+    public void updateRecord(Connection connection) throws SQLException {
+
+    }
 }
