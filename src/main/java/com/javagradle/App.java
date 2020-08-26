@@ -7,7 +7,8 @@ public class App {
     private static final String CREATE_TABLE_SQL = "CREATE TABLE test (id INTEGER not NULL, message VARCHAR(255))";
     private static final String INSERT_TEST_SQL = "INSERT INTO test (id, message) VALUES (?, ?);";
     private static final String SELECT_QUERY = "select id,message from test";
-    private static final String UPDATE_TEST_SQL = "update test set message = ?;";
+    private static final String UPDATE_TEST_SQL = "update test set message = ? where id = ?;";
+    private static final String DELETE_TEST_SQL = "delete from test where id = ?";
 
     private static Connection connection = H2JDBCUtils.getConnection();
 
@@ -17,7 +18,11 @@ public class App {
         app.createTable();
         app.insertRecord();
         app.selectRecords();
+        app.updateRecord(1);
+        app.selectRecords();
+        app.deleteRecord(1);
 
+        app.selectRecords();
     }
 
     public void createTable() throws SQLException {
@@ -65,7 +70,26 @@ public class App {
         }
     }
 
-    public void updateRecord() throws SQLException {
+    public void updateRecord(Integer id) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TEST_SQL)) {
+            preparedStatement.setString(1, "Updated Hello World");
+            preparedStatement.setInt(2, id);
 
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("error update");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteRecord(Integer id) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TEST_SQL)) {
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println("error update");
+            System.out.println(e.getMessage());
+        }
     }
 }
